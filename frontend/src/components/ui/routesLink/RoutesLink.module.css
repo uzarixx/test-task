@@ -1,0 +1,39 @@
+.cardWrapper {
+  display: flex;
+  align-items: center;
+  max-height: 63px;
+  height: 63px;
+  border-radius: 4px;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.cardWrapper p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--font-opacity);
+  margin-left: 14px;
+  max-width: 50%;
+}
+.cardWrapper:hover {
+  background: var(--navigation-background-card-opacity);
+}
+.cardWrapper:hover p {
+  color: var(--font-white);
+}
+.cardWrapper:hover svg path {
+  fill: white;
+}
+
+.active {
+  background: var(--navigation-background-card-opacity);
+}
+.active p {
+  color: var(--font-white);
+}
+.active svg path {
+  fill: white;
+}
+
+/*# sourceMappingURL=RoutesLink.module.css.map */

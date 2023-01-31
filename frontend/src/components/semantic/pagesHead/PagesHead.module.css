@@ -1,0 +1,18 @@
+.head {
+  margin-bottom: 36px;
+}
+.head h2 {
+  color: var(--font-black);
+  font-size: 32px;
+  margin-bottom: 8px;
+  line-height: 40px;
+  font-weight: 700;
+}
+.head p {
+  color: var(--subtitle-color);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=PagesHead.module.css.map */

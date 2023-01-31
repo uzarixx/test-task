@@ -1,0 +1,33 @@
+@mixin centeredItems {
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  @include centeredItems;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 52px;
+  min-height: 105px;
+  border-bottom: 1px solid var(--header-border);
+
+  .headerLeft {
+    display: flex;
+    gap: 24px;
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  .headerRight {
+    cursor: pointer;
+    @include centeredItems;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 50%;
+    position: relative;
+    transition: .3s;
+  }
+}

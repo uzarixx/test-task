@@ -13,3 +13,7 @@ export const createUser = async (
   }: { userName: string, userLastName: string, email: string, password: string }): Promise<any> => {
   return await User.create({ userName, userLastName, email, password });
 };
+
+export const getUserById = async (id: number): Promise<any> => {
+  return await User.findOne({where: {id}})
+}

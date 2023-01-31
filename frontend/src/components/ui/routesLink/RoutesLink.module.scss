@@ -1,0 +1,39 @@
+@mixin active {
+  background: var(--navigation-background-card-opacity);
+  p {
+    color: var(--font-white);
+  }
+  svg {
+    path {
+      fill: white;
+    }
+  }
+}
+
+.cardWrapper {
+  display: flex;
+  align-items: center;
+  max-height: 63px;
+  height: 63px;
+  border-radius: 4px;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: .3s;
+
+  p {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--font-opacity);
+    margin-left: 14px;
+    max-width: 50%;
+  }
+
+  &:hover {
+    @include active
+  }
+}
+
+.active {
+  @include active
+}

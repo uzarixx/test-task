@@ -1,0 +1,76 @@
+@mixin borderAndBoxShadow {
+  border: 1px solid var(--user-cards-border);
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
+
+}
+
+.userMenuWrapper {
+  display: flex;
+  gap: 24px;
+
+  .mainUserBlock {
+    width: 100%;
+    @include borderAndBoxShadow;
+    border-radius: 6px;
+    padding: 16px 24px;
+    max-height: 160px;
+    height: 160px;
+
+    .balance {
+      display: block;
+      margin-top: 21px;
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: -2.4%;
+      font-weight: 400;
+      color: var(--font-dark-blue);
+    }
+
+    .head {
+      .user {
+        display: flex;
+
+        h3 {
+          margin-left: 18px;
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 32px;
+          color: var(--font-black);
+        }
+      }
+    }
+  }
+
+  .userPayment {
+    display: flex;
+    min-width: 400px;
+    width: 50%;
+
+
+    .paymentBlock {
+      width: 100%;
+      cursor: pointer;
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      @include borderAndBoxShadow;
+      &:first-child {
+        border-bottom-left-radius: 6px;
+        border-top-left-radius: 6px;
+        border-right: 2px solid var(--user-card-border-right);
+      }
+
+      &:last-child {
+        border-bottom-right-radius: 6px;
+        border-top-right-radius: 6px;
+      }
+      p {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        margin-top: 10px;
+      }
+    }
+  }
+}

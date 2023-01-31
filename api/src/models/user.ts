@@ -7,4 +7,5 @@ export const User = sequelize.define('user', {
   password: {type: DataTypes.STRING},
   userName: {type: DataTypes.STRING},
   userLastName: {type: DataTypes.STRING},
+  balance: {type: DataTypes.INTEGER}
 })
