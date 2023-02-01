@@ -1,0 +1,20 @@
+.linkWrapper {
+  margin-top: 16px;
+  padding: 24px 18px 14px 24px;
+  background: var(--card-link-background);
+  position: relative;
+  height: 130px;
+}
+.linkWrapper p {
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -2%;
+  max-width: 230px;
+}
+.linkWrapper svg {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+}
+
+/*# sourceMappingURL=Link.module.css.map */

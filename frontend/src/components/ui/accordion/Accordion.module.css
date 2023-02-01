@@ -1,0 +1,31 @@
+.accordionWrapper {
+  width: 100%;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  border-radius: 6px;
+  border: 1px solid var(--user-cards-border);
+  padding: 24px;
+}
+.accordionWrapper .head {
+  margin-bottom: 24px;
+}
+.accordionWrapper .head h3 {
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: -2.4%;
+  font-weight: 400;
+}
+.accordionWrapper button {
+  margin-top: 24px;
+  padding: 12px 24px;
+  border-radius: 1000px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  border: 1px solid var(--user-cards-border);
+  background: var(--white);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -2%;
+  color: var(--font-neutral);
+}
+
+/*# sourceMappingURL=Accordion.module.css.map */

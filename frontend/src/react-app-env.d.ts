@@ -10,3 +10,8 @@ declare module '*.png' {
   const content: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>>;
   export default content;
 }
+
+declare module '*.jpg' {
+  const content: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>>;
+  export default content;
+}

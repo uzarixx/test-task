@@ -7,6 +7,10 @@
   min-height: 345px;
   overflow: hidden;
 }
+.walletCardsContainer .walletCardsWrapper .isEmpty {
+  width: 100%;
+  text-align: center;
+}
 .walletCardsContainer .addWalletButton {
   margin-top: 24px;
   width: 100%;

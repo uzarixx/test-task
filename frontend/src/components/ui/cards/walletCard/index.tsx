@@ -1,14 +1,16 @@
 import React, { FC } from 'react';
 import WalletIco from '../../icons/WalletIco';
 import styles from './WalletCard.module.scss';
+import date from '../../../../utils/date';
 
 interface props {
   walletName: string;
   limit: number;
   balance: number;
+  updatedAt: string;
 }
 
-const WalletCard: FC<props> = ({ walletName, limit, balance }) => {
+const WalletCard: FC<props> = ({ walletName, limit, balance, updatedAt }) => {
   const startValue = limit / 100
   const endValue = balance / startValue
   return (
@@ -19,7 +21,7 @@ const WalletCard: FC<props> = ({ walletName, limit, balance }) => {
           <h4>{walletName}</h4>
         </div>
         <div className={styles.subtitle}>
-          Last paid on August 28, 2022
+          Last paid on {date(updatedAt)}
         </div>
       </div>
       <div className={styles.balance}>

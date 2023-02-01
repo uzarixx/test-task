@@ -20,7 +20,6 @@ const CreateWalletPopup: FC = () => {
     await WalletsService.createWallet(data.limit, data.walletName);
     dispatch(fetchWallets());
     closePopup();
-
   };
 
   return (

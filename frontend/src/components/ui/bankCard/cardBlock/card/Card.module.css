@@ -1,0 +1,95 @@
+.cardWrapper {
+  padding: 18px 24px;
+  background: var(--bank-card-background);
+  border: 1px solid var(--user-cards-border);
+}
+.cardWrapper .card {
+  background: linear-gradient(45deg, #00359E 0%, #155EEF 100%);
+  box-shadow: 7.59494px 9.49367px 15.1899px rgba(0, 0, 0, 0.05);
+  max-width: 382px;
+  width: 100%;
+  height: 180px;
+  border-radius: 18px;
+  position: relative;
+  margin-bottom: 24px;
+}
+.cardWrapper .card img {
+  z-index: -1;
+}
+.cardWrapper .card svg {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+.cardWrapper .card p {
+  position: absolute;
+  left: 20px;
+  bottom: 19px;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.36px;
+}
+.cardWrapper .card .logo {
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+}
+.cardWrapper .card .logo svg {
+  position: unset;
+  opacity: 0.3;
+}
+.cardWrapper .cardInfo {
+  max-width: 383px;
+}
+.cardWrapper .cardInfo h4 {
+  color: var(--font-black);
+  margin-bottom: 16px;
+}
+.cardWrapper .cardInfo .cardData {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cardWrapper .cardInfo .cardData p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -1%;
+}
+.cardWrapper .cardInfo .cardData p svg {
+  cursor: pointer;
+  margin-right: 5px;
+}
+.cardWrapper .cardInfo .cardButton {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 108px;
+  color: var(--font-purple);
+  border: 1px solid var(--user-cards-border);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  border-radius: 6px;
+  background: var(--wallet-button-background);
+  font-size: 18px;
+  font-weight: 800;
+}
+.cardWrapper .cardInfo .cardButton span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 500;
+  width: 40px;
+  height: 40px;
+  color: var(--white);
+  background: var(--background-purple);
+  margin-bottom: 14px;
+}
+
+/*# sourceMappingURL=Card.module.css.map */

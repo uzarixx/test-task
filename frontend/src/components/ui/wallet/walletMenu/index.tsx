@@ -10,22 +10,25 @@ interface IWallets {
   limit: number;
   balance: number;
   id: number;
+  updatedAt: string;
 }
 
 
 const WalletMenu: FC = () => {
   const wallets = useSelector((state: RootState) => state.walletSlice.wallets);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const onClickCreateWallet = () => {
-    dispatch(setWalletPopup(true))
-  }
+    dispatch(setWalletPopup(true));
+  };
 
   return (
     <div className={styles.walletCardsContainer}>
       <div className={styles.walletCardsWrapper}>
-        {wallets?.map((el: IWallets) =>
-          <WalletCards walletName={el.walletName} limit={el.limit} balance={el.balance} key={el.id}/>
-        )}
+        {wallets?.length <= 0 ? <div className={styles.isEmpty}><h2>Sorry, but you don&apos;t have
+          wallet&apos;s</h2></div> : <> {wallets?.map((el: IWallets) =>
+          <WalletCards walletName={el.walletName} limit={el.limit} balance={el.balance} updatedAt={el.updatedAt} key={el.id} />,
+        )}</>}
+
       </div>
       <button className={styles.addWalletButton} onClick={onClickCreateWallet}>
         <span>+</span>
