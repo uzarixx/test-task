@@ -1,0 +1,45 @@
+.table {
+  width: 100%;
+  text-align: left;
+}
+.table tr {
+  display: block;
+  padding: 0 48px 0 48px;
+}
+.table tr th {
+  padding: 16px;
+  width: 220px;
+  max-width: 220px;
+}
+.table .title {
+  background: var(--title-table-background);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  border-bottom: 1px solid var(--header-border);
+}
+.table .infoWrapper {
+  display: block;
+  max-height: 384px;
+  overflow: auto;
+}
+.table .infoWrapper::-webkit-scrollbar {
+  background: var(--white);
+  width: 5px;
+  border-radius: 4px;
+}
+.table .infoWrapper::-webkit-scrollbar-thumb {
+  background: var(--background-purple);
+  border-radius: 4px;
+}
+.table .info th {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+.table .info .active {
+  color: var(--font-red);
+}
+.table .info .inactive {
+  color: var(--font-green);
+}
+
+/*# sourceMappingURL=Table.module.css.map */

@@ -28,7 +28,6 @@ const WalletMenu: FC = () => {
           wallet&apos;s</h2></div> : <> {wallets?.map((el: IWallets) =>
           <WalletCards walletName={el.walletName} limit={el.limit} balance={el.balance} updatedAt={el.updatedAt} key={el.id} />,
         )}</>}
-
       </div>
       <button className={styles.addWalletButton} onClick={onClickCreateWallet}>
         <span>+</span>

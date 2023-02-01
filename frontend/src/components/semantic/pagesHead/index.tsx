@@ -3,7 +3,7 @@ import styles from './PagesHead.module.scss'
 
 interface props {
   title: string;
-  subtitle: string;
+  subtitle?: string;
 }
 
 const PagesHead: FC<props> = ({title, subtitle}) => {

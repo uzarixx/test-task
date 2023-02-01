@@ -16,3 +16,4 @@ export const createCard = async ({ cardNumber, expireDateCard, cvvCard, userId }
 export const getAllCards = async ({ userId }): Promise<any> => {
   return await UserCard.findAndCountAll({ where: { userId } });
 };
+

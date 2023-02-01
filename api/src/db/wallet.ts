@@ -25,3 +25,10 @@ export const getAllWallets = async (userId: number): Promise<any> => {
 export const getWallet = async (userId: number, walletId: number): Promise<any> => {
   return await Wallet.findOne({ where: { [Op.or]: [{ userId }, { id: walletId }] } });
 };
+
+export const updateWalletBalance = async ({ walletId, balance, userId }): Promise<any> => {
+  await Wallet.update({ balance }, { where: { [Op.or]: [{ id: walletId }, { userId }] } });
+  const wallet: any = await Wallet.findOne({ where: { [Op.or]: [{ userId }, { id: walletId }] } });
+  if (wallet.balance === wallet.limit) return await Wallet.destroy({ where: { id: wallet.id } });
+  return;
+};

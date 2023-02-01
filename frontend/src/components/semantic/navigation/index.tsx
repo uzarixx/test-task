@@ -2,9 +2,14 @@ import { FC } from 'react';
 import styles from './Navigation.module.scss';
 import LogoIco from '../../ui/icons/LogoIco';
 import NavRoutes from './navRoutes';
+import SettingsIco from '../../ui/icons/SettingsIco';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
+import UserIco from '../../ui/icons/UserIco';
 
 
 const Navigation: FC = () => {
+  const { userName, userLastName }: any = useSelector((state: RootState) => state.userSlice.authUser);
   return (
     <nav className={styles.navigationWrapper}>
       <div className={styles.navTop}>
@@ -23,7 +28,8 @@ const Navigation: FC = () => {
         </div>
       </div>
       <div className={styles.navBottom}>
-
+        <div className={styles.settings}><SettingsIco /> Settings</div>
+        <div className={styles.user}><UserIco /> <p>{userName} {userLastName}</p></div>
       </div>
     </nav>
   );

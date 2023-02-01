@@ -4,9 +4,10 @@ import MasterCardIco from '../../../icons/MasterCardIco';
 import CardLogoIco from '../../../icons/CardLogoIco';
 import ClipboardIco from '../../../icons/ClipboardIco';
 import EyeIco from '../../../icons/EyeIco';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../store/store';
 import WalletIco from '../../../icons/WalletIco';
+import { setAddCardPopup } from '../../../../../store/counter/popupsSlice';
 
 interface props {
   userName: string;
@@ -17,6 +18,7 @@ interface props {
 
 const Card: FC<props> = ({ userName, userLastName, selectCard }) => {
   const cards: any = useSelector((state: RootState) => state.cardSlice.cards);
+  const dispatch = useDispatch();
   const [cvvOpen, setCvvOpen] = useState(false);
   const onClickCopy = (e: any) => {
     navigator.clipboard.writeText(`${e.target.id}`);
@@ -29,6 +31,9 @@ const Card: FC<props> = ({ userName, userLastName, selectCard }) => {
     setCvvOpen(false);
   }, [selectCard]);
 
+  const openAddCardPopup = () => {
+    dispatch(setAddCardPopup(true));
+  };
   return (
     <div className={styles.cardWrapper}>
       <div className={styles.card}>
@@ -43,7 +48,8 @@ const Card: FC<props> = ({ userName, userLastName, selectCard }) => {
           <h4>Card Information</h4>
           <div className={styles.cardData}><p>Card No.</p>
             <p onClick={(e) => onClickCopy(e)}>
-              <ClipboardIco text={cards.rows[selectCard].cardNumber} /> {cards.rows[selectCard].cardNumber}
+              <ClipboardIco
+                text={String(cards.rows[selectCard].cardNumber)} /> {cards.rows[selectCard].cardNumber.split(/(\d{4})/).filter((item: string) => item !== '').join(' ')}
             </p>
           </div>
           <div className={styles.cardData}><p>Expiry date</p>
@@ -57,7 +63,7 @@ const Card: FC<props> = ({ userName, userLastName, selectCard }) => {
         </div> :
         <div className={styles.cardInfo}>
           <h4>Add New Card</h4>
-          <button className={styles.cardButton}>
+          <button className={styles.cardButton} onClick={openAddCardPopup}>
             <span>+</span>
             New Card
           </button>

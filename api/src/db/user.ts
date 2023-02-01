@@ -17,3 +17,7 @@ export const createUser = async (
 export const getUserById = async (id: number): Promise<any> => {
   return await User.findOne({where: {id}, attributes: ['userName', 'userLastName', 'email', 'balance', 'id']})
 }
+
+export const updateUserBalance = async (id: number, balance: number): Promise<any> => {
+  return await User.update({balance}, {where: {id}})
+}

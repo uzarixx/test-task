@@ -12,7 +12,7 @@ interface props {
 
 const WalletCard: FC<props> = ({ walletName, limit, balance, updatedAt }) => {
   const startValue = limit / 100
-  const endValue = balance / startValue
+  const endValue = Math.ceil(balance / startValue)
   return (
     <div className={styles.walletWrapper}>
       <div className={styles.head}>
