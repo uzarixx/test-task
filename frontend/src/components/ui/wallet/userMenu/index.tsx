@@ -3,11 +3,17 @@ import styles from './UserMenu.module.scss';
 import Hello from '../../../../assets/images/png/Hello.png';
 import SendPaymentIco from '../../icons/SendPaymentIco';
 import RequestPaymentIco from '../../icons/RequestPaymentIco';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
+import { NumberFormat } from 'src/utils/numberFormat';
+import { setSendPaymentPopup } from '../../../../store/counter/popupsSlice';
 
 const UserMenu: FC = () => {
+  const dispatch = useDispatch();
   const user: any = useSelector((state: RootState) => state.userSlice.authUser);
+  const onClickSendPayment = () => {
+    dispatch(setSendPaymentPopup(true));
+  };
   return (
     <div className={styles.userMenuWrapper}>
       <div className={styles.mainUserBlock}>
@@ -18,13 +24,10 @@ const UserMenu: FC = () => {
           </div>
         </div>
         <span className={styles.balance}>{user.balance ?
-          new Intl.NumberFormat('en', {
-            style: 'currency',
-            currency: 'USD',
-          }).format(user?.balance) : 'Loading...'}</span>
+          `${NumberFormat(user.balance)}` : 'Loading...'}</span>
       </div>
       <div className={styles.userPayment}>
-        <div className={styles.paymentBlock}>
+        <div className={styles.paymentBlock} onClick={onClickSendPayment}>
           <SendPaymentIco />
           <p>Send a payment</p>
         </div>

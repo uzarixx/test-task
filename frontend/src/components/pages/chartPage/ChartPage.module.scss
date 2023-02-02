@@ -1,0 +1,36 @@
+.cardPin {
+  padding: 18px 24px;
+  background: var(--card-link-background);
+  border: 1px solid var(--border-purple);
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .left {
+    display: flex;
+    align-items: center;
+
+    p {
+      color: var(--font-purple);
+      line-height: 20px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    svg {
+      margin-right: 16px;
+    }
+  }
+
+  .right {
+    button {
+      border: 1px solid var(--from-input-border);
+      padding: 8px 16px;
+      background: var(--white);
+      box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+      border-radius: 1000px;
+    }
+  }
+}

@@ -5,12 +5,13 @@ import { useFormContext } from 'react-hook-form';
 interface props {
   placeholder: string;
   name: string;
+  type?: string;
 }
 
-const FormInput: FC<props> = ({ placeholder, name }) => {
+const FormInput: FC<props> = ({ placeholder, name, type }) => {
   const { register } = useFormContext();
   return (
-    <input className={styles.input} type={'text'} placeholder={placeholder} {...register(name)} />
+    <input className={styles.input} type={type || 'text'} placeholder={placeholder} {...register(name)} />
   );
 };
 

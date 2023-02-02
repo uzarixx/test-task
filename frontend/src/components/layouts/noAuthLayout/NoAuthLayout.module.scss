@@ -1,0 +1,17 @@
+.wrapper {
+  width: 100%;
+  text-align: center;
+  padding: 40px;
+
+  button {
+    margin-top: 10px;
+    background: var(--background-purple);
+    border-radius: 1000px;
+    color: var(--white);
+    padding: 10px;
+    max-width: 250px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+  }
+}

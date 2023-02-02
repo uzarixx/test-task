@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import styles from './CreateWalletPopup.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
@@ -13,9 +13,10 @@ const CreateWalletPopup: FC = () => {
   const dispatch = useDispatch<any>();
   const closePopup = () => {
     dispatch(setWalletPopup(false));
-    methods.reset()
+    methods.reset();
   };
   const methods = useForm();
+
   const onSubmit = async (data: any) => {
     await WalletsService.createWallet(data.limit, data.walletName);
     dispatch(fetchWallets());

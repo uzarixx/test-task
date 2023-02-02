@@ -27,10 +27,11 @@ const Navigation: FC = () => {
           <NavRoutes />
         </div>
       </div>
-      <div className={styles.navBottom}>
-        <div className={styles.settings}><SettingsIco /> Settings</div>
-        <div className={styles.user}><UserIco /> <p>{userName} {userLastName}</p></div>
-      </div>
+      {localStorage.getItem('authToken') &&
+        <div className={styles.navBottom}>
+          <div className={styles.settings}><SettingsIco /> Settings</div>
+          <div className={styles.user}><UserIco /> <p>{userName} {userLastName}</p></div>
+        </div>}
     </nav>
   );
 };

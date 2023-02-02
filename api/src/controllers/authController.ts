@@ -7,7 +7,7 @@ const AuthController = {
   signUp: async (req: Request, res: Response) => {
     const { userName, userLastName, email, password } = req.body;
     const existingUser = await getUserByEmail(email);
-    if (existingUser) return res.status(400).json({ message: `Користувач з почтою ${email} вже є` });
+    if (existingUser) return res.status(400).json({ message: `User with email: ${email} is created` });
     const hashPassword = await bcrypt.hash(password, 7);
     const user = await createUser({
       userName,
@@ -21,9 +21,9 @@ const AuthController = {
   login: async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const existingUser = await getUserByEmail(email);
-    if (!existingUser) return res.status(400).json({ message: `Користувач з почтою ${email} не знайдено` });
+    if (!existingUser) return res.status(400).json({ message: `User with email: ${email} not found` });
     const comparePassword = await bcrypt.compare(password, existingUser.password);
-    if (!comparePassword) return res.status(400).json({ message: 'Пароль не вірний' });
+    if (!comparePassword) return res.status(400).json({ message: 'Password error' });
     const token = generateJWt(existingUser.id, existingUser.userName, existingUser.role);
     res.json({ token });
   },

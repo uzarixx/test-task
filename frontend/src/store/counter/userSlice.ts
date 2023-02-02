@@ -16,15 +16,15 @@ export const fetchAuthUser = createAsyncThunk(
 
 export interface CounterState {
   authUser: [];
-  authUserStatus: boolean;
+  status: boolean;
 }
 
 const initialState: CounterState = {
+  status: true,
   authUser: [],
-  authUserStatus: true,
 };
 
-const walletSlice = createSlice({
+const userSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
@@ -34,15 +34,15 @@ const walletSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAuthUser.pending, (state: any) => {
-      state.authUserStatus = true;
+      state.status = true;
     });
     builder.addCase(fetchAuthUser.fulfilled, (state: any, action: any) => {
-      state.authUserStatus = false;
+      state.status = false;
       state.authUser = action.payload;
     });
   },
 });
 
 
-export default walletSlice.reducer;
-export const { setUserData } = walletSlice.actions;
+export default userSlice.reducer;
+export const { setUserData } = userSlice.actions;

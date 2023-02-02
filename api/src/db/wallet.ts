@@ -27,7 +27,7 @@ export const getWallet = async (userId: number, walletId: number): Promise<any> 
 };
 
 export const updateWalletBalance = async ({ walletId, balance, userId }): Promise<any> => {
-  await Wallet.update({ balance }, { where: { [Op.or]: [{ id: walletId }, { userId }] } });
+  await Wallet.update({ balance }, { where: { id: walletId } });
   const wallet: any = await Wallet.findOne({ where: { [Op.or]: [{ userId }, { id: walletId }] } });
   if (wallet.balance === wallet.limit) return await Wallet.destroy({ where: { id: wallet.id } });
   return;

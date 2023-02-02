@@ -19,6 +19,7 @@
 .table .infoWrapper {
   display: block;
   max-height: 384px;
+  min-height: 384px;
   overflow: auto;
 }
 .table .infoWrapper::-webkit-scrollbar {

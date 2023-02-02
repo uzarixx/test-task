@@ -6,4 +6,5 @@ import transactionController from '../controllers/transactionController';
 export const transactionRouter = Router();
 
 transactionRouter.post('/create-request-payment', authUser, handleErrorMiddleware(transactionController.createRequestPayment));
-transactionRouter.get('/get-transactions', authUser, handleErrorMiddleware(transactionController.getTransactions))
+transactionRouter.get('/get-transactions', authUser, handleErrorMiddleware(transactionController.getTransactions));
+transactionRouter.get('/get-balances', authUser, handleErrorMiddleware(transactionController.getAllTransactionsBalance));
