@@ -2,9 +2,12 @@ import bcrypt from 'bcrypt';
 import { getUserByEmail, createUser } from '../db/user';
 import { Request, Response } from 'express';
 import { generateJWt } from '../service/generateJwt';
+import { validationResult } from 'express-validator';
 
 const AuthController = {
   signUp: async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ message: `Validation error` });
     const { userName, userLastName, email, password } = req.body;
     const existingUser = await getUserByEmail(email);
     if (existingUser) return res.status(400).json({ message: `User with email: ${email} is created` });
@@ -19,6 +22,8 @@ const AuthController = {
     res.json({ token });
   },
   login: async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ message: `Validation error` });
     const { email, password } = req.body;
     const existingUser = await getUserByEmail(email);
     if (!existingUser) return res.status(400).json({ message: `User with email: ${email} not found` });

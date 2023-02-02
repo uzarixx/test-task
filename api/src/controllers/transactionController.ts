@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { createTransaction, getAllBalances, getAllTransactions } from '../db/transaction';
 import { getAllCards } from '../db/userCard';
 import { updateUserBalance } from '../db/user';
+import { validationResult } from 'express-validator';
 
 interface Query {
   page: string;
@@ -12,6 +13,8 @@ interface Query {
 
 const TransactionController = {
   createRequestPayment: async (req: Request | any, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ message: `Validation error` });
     const { amount } = req.body;
     const { id, balance } = req.user;
     const cards = await getAllCards({ userId: id });
@@ -36,8 +39,8 @@ const TransactionController = {
   },
   getAllTransactionsBalance: async (req: Request | any, res: Response) => {
     const { id } = req.user;
-    const transactions = await getAllBalances(id)
-    res.json(transactions)
+    const transactions = await getAllBalances(id);
+    res.json(transactions);
   },
 
 };

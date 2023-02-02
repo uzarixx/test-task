@@ -2,10 +2,13 @@ import { Request, Response } from 'express';
 import { createWallet, getAllWallets, getCountWallets, getWallet, updateWalletBalance } from '../db/wallet';
 import { createTransaction } from '../db/transaction';
 import { updateUserBalance } from '../db/user';
+import { validationResult } from 'express-validator';
 
 
 const WalletController = {
   createWallet: async (req: Request | any, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ message: `Validation error` });
     const { limit, walletName } = req.body;
     const { id } = req.user;
     const { count } = await getCountWallets(id);
@@ -14,6 +17,8 @@ const WalletController = {
     res.json(response);
   },
   updateBalanceWallet: async (req: Request | any, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ message: `Validation error` });
     const { walletId, amount } = req.body;
     const { id, balance } = req.user;
     if (amount > balance) return res.status(500).json('Not enough money in the account');
