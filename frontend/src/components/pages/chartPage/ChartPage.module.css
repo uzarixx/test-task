@@ -40,6 +40,10 @@
   justify-content: space-between;
   align-items: center;
 }
+.chartHead .selects {
+  display: flex;
+  gap: 12px;
+}
 .chartHead select {
   border: 1px solid #E2E8F0;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);

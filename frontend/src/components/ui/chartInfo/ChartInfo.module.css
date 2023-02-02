@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 36px;
   gap: 40px;
 }
@@ -10,6 +11,12 @@
   border-radius: 6px;
   padding: 12px;
   display: flex;
+  flex: 0 1 calc(33.333% - 40px);
+}
+@media (max-width: 1440px) {
+  .wrapper .incomeValue {
+    flex: 0 1 calc(100% - 40px);
+  }
 }
 .wrapper .incomeValue svg {
   margin-right: 18px;

@@ -4,7 +4,7 @@ import LogoIco from '../../ui/icons/LogoIco';
 import NavRoutes from './navRoutes';
 import SettingsIco from '../../ui/icons/SettingsIco';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+import { RootState, useAppSelector } from '../../../store/store';
 import UserIco from '../../ui/icons/UserIco';
 import { setNavigationPopup } from '../../../store/counter/popupsSlice';
 import { fetchAuthUser } from '../../../store/counter/userSlice';
@@ -12,7 +12,7 @@ import { fetchAuthUser } from '../../../store/counter/userSlice';
 
 const Navigation: FC = () => {
   const dispatch = useDispatch<any>();
-  const user: any = useSelector((state: RootState) => state.userSlice.authUser);
+  const user = useAppSelector((state: RootState) => state.userSlice.authUser);
   const isOpen = useSelector((state: RootState) => state.popupsSlice.navigationPopup);
   const onClickLogout = () => {
     localStorage.removeItem('authToken');

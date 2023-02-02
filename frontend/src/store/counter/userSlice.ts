@@ -15,13 +15,13 @@ export const fetchAuthUser = createAsyncThunk(
 );
 
 export interface CounterState {
-  authUser: [];
+  authUser: {userName: string, userLastName: string, balance: number};
   status: boolean;
 }
 
 const initialState: CounterState = {
   status: true,
-  authUser: [],
+  authUser: {userName: '', userLastName: '', balance: 0},
 };
 
 const userSlice = createSlice({

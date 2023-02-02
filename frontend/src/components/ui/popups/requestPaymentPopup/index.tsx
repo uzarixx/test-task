@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import PopupWrapper from '../PopupWrapper';
 import styles from './RequestPaymentPopup.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import { RootState, useAppSelector } from '../../../../store/store';
 import { setRequestPaymentPopup } from '../../../../store/counter/popupsSlice';
 import { FormProvider, useForm } from 'react-hook-form';
 import MasterCardIco from '../../icons/MasterCardIco';
@@ -18,16 +18,16 @@ import { paymentValidate } from '../../../../utils/validations/paymentValidate';
 const RequestPaymentPopup: FC = () => {
   const [selectCard, setSelectCard] = useState(-0);
   const requestPopup = useSelector((state: RootState) => state.popupsSlice.requestPaymentPopup);
-  const cards: any = useSelector((state: RootState) => state.cardSlice.cards) || [];
+  const cards = useAppSelector((state: RootState) => state.cardSlice.cards) || [];
   const dispatch = useDispatch<any>();
   const methods = useForm({
-    resolver: yupResolver(paymentValidate)
+    resolver: yupResolver(paymentValidate),
   });
   const closePopup = () => {
     dispatch(setRequestPaymentPopup(false));
   };
   useEffect(() => {
-    if (cards.length <= 0) dispatch(fetchCards());
+    if (cards.rows.length <= 0) dispatch(fetchCards());
   }, [requestPopup]);
   const onSubmit = async (data: any) => {
     try {
@@ -62,7 +62,7 @@ const RequestPaymentPopup: FC = () => {
                   <MasterCardIco />
                 </div>,
               )}
-              <FormInput placeholder={'Amount'} name={'amount'} error={methods.formState.errors}/>
+              <FormInput placeholder={'Amount'} name={'amount'} error={methods.formState.errors} />
               <button>Send</button>
             </>}
         </form>

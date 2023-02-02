@@ -6,16 +6,18 @@ import InfoIco from '../../ui/icons/InfoIco';
 import Chart from '../../ui/chart';
 
 const ChartPage: FC = () => {
-  const [chartType, setChartType] = useState(false);
+  const [chartType, setChartType] = useState({ chartTimes: false, chartMode: false });
   const [pin, setPin] = useState(localStorage.getItem('pin') === '1');
   const onClickCardPin = () => {
     localStorage.setItem('pin', '1');
     setPin(true);
   };
-  const onChangeChartType = (e: string) => {
-    console.log(e);
-    setChartType(e === 'This year' ? false : true);
+  const onChangeChartTime = (e: string) => {
+    setChartType({ ...chartType, chartTimes: e === 'This year' ? false : true });
   };
+  const onChangeChartMode = (e: string) => {
+    setChartType({...chartType, chartMode: e === 'Income chart' ? false : true})
+  }
   return (
     <Main>
       <PagesHead title={'Finance Chart'} subtitle={'Keep track your financial plan'} />
@@ -30,10 +32,16 @@ const ChartPage: FC = () => {
       </div>}
       <div className={styles.chartHead}>
         <h3 className={styles.chartTitle}>Statistic</h3>
-        <select onChange={(e) => onChangeChartType(e.target.value)}>
-          <option defaultValue={'This year'}>This year</option>
-          <option defaultValue={'This month'}>This month</option>
-        </select>
+        <div className={styles.selects}>
+          <select onChange={(e) => onChangeChartMode(e.target.value)}>
+            <option defaultValue={'Income chart'}>Income chart</option>
+            <option defaultValue={'Outcome chart'}>Outcome chart</option>
+          </select>
+          <select onChange={(e) => onChangeChartTime(e.target.value)}>
+            <option defaultValue={'This year'}>This year</option>
+            <option defaultValue={'This month'}>This month</option>
+          </select>
+        </div>
       </div>
       <Chart chartType={chartType} />
     </Main>

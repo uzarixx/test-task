@@ -5,7 +5,7 @@ import CardLogoIco from '../../../icons/CardLogoIco';
 import ClipboardIco from '../../../icons/ClipboardIco';
 import EyeIco from '../../../icons/EyeIco';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../../store/store';
+import { RootState, useAppSelector } from '../../../../../store/store';
 import WalletIco from '../../../icons/WalletIco';
 import { setAddCardPopup } from '../../../../../store/counter/popupsSlice';
 
@@ -17,7 +17,7 @@ interface props {
 
 
 const Card: FC<props> = ({ userName, userLastName, selectCard }) => {
-  const cards: any = useSelector((state: RootState) => state.cardSlice.cards);
+  const cards = useAppSelector((state: RootState) => state.cardSlice.cards);
   const dispatch = useDispatch();
   const [cvvOpen, setCvvOpen] = useState(false);
   const onClickCopy = (e: any) => {

@@ -2,6 +2,11 @@
   display: flex;
   gap: 24px;
 }
+@media (max-width: 1110px) {
+  .userMenuWrapper {
+    flex-direction: column;
+  }
+}
 .userMenuWrapper .mainUserBlock {
   width: 100%;
   border: 1px solid var(--user-cards-border);
@@ -34,6 +39,11 @@
   display: flex;
   min-width: 400px;
   width: 50%;
+}
+@media (max-width: 1110px) {
+  .userMenuWrapper .userPayment {
+    width: 100%;
+  }
 }
 .userMenuWrapper .userPayment .paymentBlock {
   width: 100%;

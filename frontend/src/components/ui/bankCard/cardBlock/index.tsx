@@ -2,16 +2,16 @@ import React, { FC, useEffect, useState } from 'react';
 import styles from './CardBlock.module.scss';
 import SelectCard from './selectCard';
 import Card from './card';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import { useDispatch } from 'react-redux';
+import { RootState, useAppSelector } from '../../../../store/store';
 import { fetchCards } from '../../../../store/counter/cardSlice';
 import Link from './link';
 
 
 const CardBlock: FC = () => {
   const dispatch = useDispatch<any>();
-  const user: any = useSelector((state: RootState) => state.userSlice.authUser);
-  const [selectCard, setSelectCard] = useState(0);
+  const user = useAppSelector((state: RootState) => state.userSlice.authUser);
+  const [selectCard, setSelectCard] = useState<any>(0);
   useEffect(() => {
     dispatch(fetchCards());
   }, []);

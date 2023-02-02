@@ -14,12 +14,12 @@ export const fetchCards = createAsyncThunk(
 );
 
 export interface CounterState {
-  cards: [];
+  cards: { count: number, rows: {id: number, userId: number, cardNumber: string, cvvCard: string, expireDateCard: string, updatedAt: string}[] };
   cardsStatus: boolean;
 }
 
 const initialState: CounterState = {
-  cards: [],
+  cards: { count: 0, rows: [{id: 0, userId: 0, cardNumber: '', cvvCard: '', expireDateCard: '', updatedAt: ''}] },
   cardsStatus: true,
 };
 

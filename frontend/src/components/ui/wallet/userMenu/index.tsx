@@ -4,13 +4,13 @@ import Hello from '../../../../assets/images/png/Hello.png';
 import SendPaymentIco from '../../icons/SendPaymentIco';
 import RequestPaymentIco from '../../icons/RequestPaymentIco';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import { RootState, useAppSelector } from '../../../../store/store';
 import { NumberFormat } from 'src/utils/numberFormat';
 import { setRequestPaymentPopup, setSendPaymentPopup } from '../../../../store/counter/popupsSlice';
 
 const UserMenu: FC = () => {
   const dispatch = useDispatch();
-  const user: any = useSelector((state: RootState) => state.userSlice.authUser);
+  const user = useAppSelector((state: RootState) => state.userSlice.authUser);
   const onClickSendPayment = () => {
     dispatch(setSendPaymentPopup(true));
   };

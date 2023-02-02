@@ -14,12 +14,12 @@ export const fetchTransactions = createAsyncThunk(
 );
 
 export interface CounterState {
-  transactions: [];
+  transactions: {count: number, rows: []};
   transactionsStatus: boolean;
 }
 
 const initialState: CounterState = {
-  transactions: [],
+  transactions: {count: 0, rows: []},
   transactionsStatus: true,
 };
 

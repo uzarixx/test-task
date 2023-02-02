@@ -1,5 +1,20 @@
 .mainLayout {
   width: 100%;
 }
+@media (max-width: 1110px) {
+  .mainLayout {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+  .mainLayout::-webkit-scrollbar {
+    background: var(--white);
+    width: 5px;
+    border-radius: 4px;
+  }
+  .mainLayout::-webkit-scrollbar-thumb {
+    background: var(--background-purple);
+    border-radius: 4px;
+  }
+}
 
 /*# sourceMappingURL=MainLayout.module.css.map */

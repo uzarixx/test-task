@@ -4,10 +4,10 @@ import ArrowMiniDoubleIco from '../icons/ArrowMiniDoubleIco';
 import ArrowMiniIco from '../icons/ArrowMiniIco';
 import { usePaginationHook } from '../../../utils/hooks/paginationHook';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+import { RootState, useAppSelector } from '../../../store/store';
 
 const Pagination: FC = () => {
-  const transactions: any = useSelector((state: RootState) => state.transactionSlice.transactions);
+  const transactions = useAppSelector((state: RootState) => state.transactionSlice.transactions);
   const count = transactions.count;
   const {
     onClickPlusOne,

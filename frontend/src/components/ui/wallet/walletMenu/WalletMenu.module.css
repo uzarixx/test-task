@@ -1,11 +1,26 @@
 .walletCardsContainer .walletCardsWrapper {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
   margin-top: 24px;
   max-height: 345px;
   min-height: 345px;
   overflow: hidden;
+}
+@media (max-width: 1050px) {
+  .walletCardsContainer .walletCardsWrapper {
+    overflow-y: auto;
+  }
+  .walletCardsContainer .walletCardsWrapper::-webkit-scrollbar {
+    background: var(--white);
+    width: 5px;
+    border-radius: 4px;
+  }
+  .walletCardsContainer .walletCardsWrapper::-webkit-scrollbar-thumb {
+    background: var(--background-purple);
+    border-radius: 4px;
+  }
 }
 .walletCardsContainer .walletCardsWrapper .isEmpty {
   width: 100%;

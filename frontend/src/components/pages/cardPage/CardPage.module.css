@@ -3,5 +3,21 @@
   display: flex;
   gap: 24px;
 }
+@media (max-width: 1430px) {
+  .wrapper {
+    flex-direction: column;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  .wrapper::-webkit-scrollbar {
+    background: var(--white);
+    width: 5px;
+    border-radius: 4px;
+  }
+  .wrapper::-webkit-scrollbar-thumb {
+    background: var(--background-purple);
+    border-radius: 4px;
+  }
+}
 
 /*# sourceMappingURL=CardPage.module.css.map */

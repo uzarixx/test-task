@@ -11,7 +11,7 @@ interface props {
 
 const ChartInfo: FC<props> = ({ balances }) => {
   const resultValue = (minus: boolean) => {
-    const result = balances.filter((el: { minus: boolean }) => el.minus === minus).map((el: { userBalance: number }) => el.userBalance).reduce((p: number, c: number) => p + c, 0);
+    const result = balances.filter((el: { minus: boolean }) => el.minus === minus).map((el: { amount: number }) => el.amount).reduce((p: number, c: number) => p + c, 0);
     return result;
   };
   const bonus = () => {

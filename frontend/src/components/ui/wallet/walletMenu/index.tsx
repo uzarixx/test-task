@@ -5,13 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import { setWalletPopup } from '../../../../store/counter/popupsSlice';
 
-interface IWallets {
-  walletName: string;
-  limit: number;
-  balance: number;
-  id: number;
-  updatedAt: string;
-}
+
 
 
 const WalletMenu: FC = () => {
@@ -25,7 +19,7 @@ const WalletMenu: FC = () => {
     <div className={styles.walletCardsContainer}>
       <div className={styles.walletCardsWrapper}>
         {wallets?.length <= 0 ? <div className={styles.isEmpty}><h2>Sorry, but you don&apos;t have
-          wallet&apos;s</h2></div> : <> {wallets?.map((el: IWallets) =>
+          wallet&apos;s</h2></div> : <> {wallets?.map((el) =>
           <WalletCards walletName={el.walletName} limit={el.limit} balance={el.balance} updatedAt={el.updatedAt} key={el.id} />,
         )}</>}
       </div>

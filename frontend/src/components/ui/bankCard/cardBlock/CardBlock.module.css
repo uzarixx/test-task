@@ -1,5 +1,10 @@
 .cardWrapper {
   width: 50%;
 }
+@media (max-width: 1430px) {
+  .cardWrapper {
+    width: 100%;
+  }
+}
 
 /*# sourceMappingURL=CardBlock.module.css.map */

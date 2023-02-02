@@ -2,4 +2,19 @@
   margin-top: 36px;
   display: flex;
   gap: 24px;
+  @media (max-width: 1430px) {
+    flex-direction: column;
+    max-height: 70vh;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      background: var(--white);
+      width: 5px;
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--background-purple);
+      border-radius: 4px;
+    }
+  }
+
 }

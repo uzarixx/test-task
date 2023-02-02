@@ -1,7 +1,9 @@
 .wrapper {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 36px;
   gap: 40px;
+
   .incomeValue {
     width: 100%;
     border: 1px solid var(--user-cards-border);
@@ -9,10 +11,16 @@
     border-radius: 6px;
     padding: 12px;
     display: flex;
+    flex: 0 1 calc(33.333% - 40px);
+
+    @media (max-width: 1440px) {
+      flex: 0 1 calc(100% - 40px);
+    }
 
     svg {
       margin-right: 18px;
     }
+
     p {
       color: var(--chart-info-font);
       font-size: 14px;

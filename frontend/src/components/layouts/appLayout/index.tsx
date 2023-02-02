@@ -4,12 +4,11 @@ import Navigation from '../../semantic/navigation';
 import MainLayout from '../mainLayout';
 import Popups from '../../ui/popups';
 import NoAuthLayout from '../noAuthLayout';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+import { RootState, useAppSelector } from '../../../store/store';
 
 const AppLayout: FC = () => {
-  const authUser: any = useSelector((state: RootState) => state.userSlice.authUser);
-  const pendingAuthUser: any = useSelector((state: RootState) => state.userSlice.status);
+  const authUser = useAppSelector((state: RootState) => state.userSlice.authUser);
+  const pendingAuthUser = useAppSelector((state: RootState) => state.userSlice.status);
   return (
     <div className={styles.appLayout}>
       <Popups />

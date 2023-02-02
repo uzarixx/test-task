@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Table.module.scss';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+import { RootState, useAppSelector } from '../../../store/store';
 import date from '../../../utils/date';
 import { NumberFormat } from '../../../utils/numberFormat';
 
@@ -15,7 +15,7 @@ interface ITransactions {
 }
 
 const Table: FC = () => {
-  const transactions: any = useSelector((state: RootState) => state.transactionSlice.transactions);
+  const transactions = useAppSelector((state: RootState) => state.transactionSlice.transactions);
   return (
     <table className={styles.table}>
       <thead>

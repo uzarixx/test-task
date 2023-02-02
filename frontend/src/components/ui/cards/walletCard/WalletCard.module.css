@@ -9,6 +9,11 @@
   flex-direction: column;
   justify-content: space-between;
 }
+@media (max-width: 1050px) {
+  .walletWrapper {
+    flex: 0 1 calc(100% - 20px);
+  }
+}
 .walletWrapper .head .title {
   display: flex;
   align-items: center;

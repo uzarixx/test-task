@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import styles from './SendPaymentPopup.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import { RootState, useAppSelector } from '../../../../store/store';
 import { setSendPaymentPopup } from '../../../../store/counter/popupsSlice';
 import { fetchWallets } from '../../../../store/counter/walletSlice';
 import FormInput from '../../inputs/formInput';
@@ -14,7 +14,7 @@ import { paymentValidate } from '../../../../utils/validations/paymentValidate';
 
 const SendPaymentPopup: FC = () => {
   const [error, setError] = useState('');
-  const wallets: any = useSelector((state: RootState) => state.walletSlice.wallets) || [];
+  const wallets = useAppSelector((state: RootState) => state.walletSlice.wallets) || [];
   const [selectWallet, setSelectWallet] = useState(wallets[0]?.id);
   const dispatch = useDispatch<any>();
   const requestPopup = useSelector((state: RootState) => state.popupsSlice.sendPaymentPopup);

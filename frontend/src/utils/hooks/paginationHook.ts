@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchTransactions } from '../../store/counter/transactionSlice';
 
-export const usePaginationHook = (count: string) => {
+export const usePaginationHook = (count: number) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<any>();
   const [searchParams] = useSearchParams();

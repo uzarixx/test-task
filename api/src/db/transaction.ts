@@ -16,5 +16,5 @@ export const getAllTransactions = async (id: number, page: number, limit: number
 };
 
 export const getAllBalances = async (id: number): Promise<any> => {
-  return await Transaction.findAll({where: {userId: id}, attributes: ['userBalance', 'createdAt', 'minus'], order: [['createdAt', 'ASC']]})
+  return await Transaction.findAll({where: {userId: id}, attributes: ['amount', 'createdAt', 'minus'], order: [['createdAt', 'ASC']]})
 }

@@ -14,7 +14,7 @@ export const fetchWallets = createAsyncThunk(
 );
 
 export interface CounterState {
-  wallets: [];
+  wallets: {id: number, userId: number, balance: number, limit: number, walletName: string, updatedAt: string}[];
   walletsStatus: boolean;
 }
 
