@@ -8,6 +8,7 @@ export interface CounterState {
   sendPaymentPopup: boolean;
   requestPaymentPopup: boolean;
   navigationPopup: boolean;
+  mainActive: boolean;
 }
 
 const initialState: CounterState = {
@@ -17,6 +18,7 @@ const initialState: CounterState = {
   sendPaymentPopup: false,
   requestPaymentPopup: false,
   navigationPopup: true,
+  mainActive: false,
 };
 
 const popupsSlice = createSlice({
@@ -41,6 +43,9 @@ const popupsSlice = createSlice({
     setNavigationPopup: (state, action) => {
       state.navigationPopup = action.payload;
     },
+    setMainActive: (state, action) => {
+      state.mainActive = action.payload
+    }
   },
 });
 
@@ -53,4 +58,5 @@ export const {
   setSendPaymentPopup,
   setRequestPaymentPopup,
   setNavigationPopup,
+  setMainActive,
 } = popupsSlice.actions;

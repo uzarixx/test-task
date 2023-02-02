@@ -14,3 +14,10 @@
     }
   }
 }
+
+.active {
+  background: var(--white);
+  position: absolute;
+  z-index: 99;
+  height: 100vh;
+}

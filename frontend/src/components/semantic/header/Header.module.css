@@ -26,5 +26,23 @@
   position: relative;
   transition: 0.3s;
 }
+.header .headerRight span {
+  position: absolute;
+  left: -155px;
+  top: 2px;
+  color: var(--font-white);
+  font-size: 12px;
+  width: 150px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  background: var(--background-purple);
+  padding: 3px;
+  border-radius: 4px;
+}
+.header .headerRight:hover span {
+  opacity: 1;
+  visibility: visible;
+}
 
 /*# sourceMappingURL=Header.module.css.map */

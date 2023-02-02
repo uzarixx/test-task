@@ -19,7 +19,7 @@ export interface CounterState {
 }
 
 const initialState: CounterState = {
-  cards: { count: 0, rows: [{id: 0, userId: 0, cardNumber: '', cvvCard: '', expireDateCard: '', updatedAt: ''}] },
+  cards: { count: 0, rows: [] },
   cardsStatus: true,
 };
 
