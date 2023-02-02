@@ -20,7 +20,7 @@ const WalletController = {
     const wallet = await getWallet(id, walletId);
     if (!wallet) return res.status(500).json('Wallet is not found');
     if (wallet.balance + Number(amount) > wallet.limit) return res.status(500).json('Too much amount');
-    await updateWalletBalance({ walletId, balance: Number(wallet.balance) + Number(amount), userId: id });
+    await updateWalletBalance({ walletId, balance: Number(wallet.balance) + Number(amount) });
     await createTransaction({
       userId: id,
       amount,

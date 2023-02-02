@@ -11,6 +11,8 @@ import FormInput from '../../inputs/formInput';
 import TransactionsService from '../../../../services/fetchServices/transactions';
 import { fetchAuthUser } from '../../../../store/counter/userSlice';
 import { Link } from 'react-router-dom';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { paymentValidate } from '../../../../utils/validations/paymentValidate';
 
 
 const RequestPaymentPopup: FC = () => {
@@ -18,7 +20,9 @@ const RequestPaymentPopup: FC = () => {
   const requestPopup = useSelector((state: RootState) => state.popupsSlice.requestPaymentPopup);
   const cards: any = useSelector((state: RootState) => state.cardSlice.cards) || [];
   const dispatch = useDispatch<any>();
-  const methods = useForm();
+  const methods = useForm({
+    resolver: yupResolver(paymentValidate)
+  });
   const closePopup = () => {
     dispatch(setRequestPaymentPopup(false));
   };
@@ -42,7 +46,9 @@ const RequestPaymentPopup: FC = () => {
   return (
     <PopupWrapper popup={requestPopup} closePopup={closePopup}>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)} onClick={(e) => e.stopPropagation()} className={styles.wrapper}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}
+              onMouseDown={(e) => e.stopPropagation()}
+              onClick={(e) => e.stopPropagation()} className={styles.wrapper}>
           <h4>Request a payment</h4>
           {cards.count === 0 ? <>
               You no have cards
@@ -56,7 +62,7 @@ const RequestPaymentPopup: FC = () => {
                   <MasterCardIco />
                 </div>,
               )}
-              <FormInput placeholder={'Amount'} name={'amount'} />
+              <FormInput placeholder={'Amount'} name={'amount'} error={methods.formState.errors}/>
               <button>Send</button>
             </>}
         </form>

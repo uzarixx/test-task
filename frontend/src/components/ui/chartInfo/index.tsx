@@ -12,29 +12,35 @@ interface props {
 const ChartInfo: FC<props> = ({ balances }) => {
   const resultValue = (minus: boolean) => {
     const result = balances.filter((el: { minus: boolean }) => el.minus === minus).map((el: { userBalance: number }) => el.userBalance).reduce((p: number, c: number) => p + c, 0);
-    return NumberFormat(result);
+    return result;
   };
+  const bonus = () => {
+    const startValue = resultValue(false);
+    const endValue = startValue / 100;
+    return Math.ceil(endValue * 5);
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.incomeValue}>
         <IncomeIco />
         <div>
           <p>Lifetime Income</p>
-          <span>{resultValue(false)}</span>
+          <span>{NumberFormat(resultValue(false))}</span>
         </div>
       </div>
       <div className={styles.incomeValue}>
         <OutcomeIco />
         <div>
           <p>Lifetime Outcome</p>
-          <span>{resultValue(true)}</span>
+          <span>{NumberFormat(resultValue(true))}</span>
         </div>
       </div>
       <div className={styles.incomeValue}>
         <BonusIco />
         <div>
           <p>Bonus Income</p>
-          <span>$40,720</span>
+          <span>{NumberFormat(bonus())}</span>
         </div>
       </div>
     </div>

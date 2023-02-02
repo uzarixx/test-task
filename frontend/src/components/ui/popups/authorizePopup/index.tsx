@@ -39,6 +39,7 @@ const AuthorizePopup: FC = () => {
     <div className={`${styles.popupWrapper} ${authorizePopup && styles.active}`} onClick={closePopup}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)} className={styles.popupForm}
+              onMouseDown={(e) => e.stopPropagation()}
               onClick={(e) => e.stopPropagation()}>
           <h4>Login</h4>
           {typeAuth ? <LoginForm /> : <Register />}

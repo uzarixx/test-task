@@ -6,12 +6,16 @@ interface props {
   placeholder: string;
   name: string;
   type?: string;
+  error?: any;
 }
 
-const FormInput: FC<props> = ({ placeholder, name, type }) => {
+const FormInput: FC<props> = ({ placeholder, name, type, error }) => {
   const { register } = useFormContext();
   return (
+    <div className={styles.inputWrapper}>
     <input className={styles.input} type={type || 'text'} placeholder={placeholder} {...register(name)} />
+      <p className={styles.error}>{error && error[name]?.message}</p>
+    </div>
   );
 };
 

@@ -12,6 +12,9 @@
   justify-content: space-between;
   cursor: pointer;
 }
+.wrapper button {
+  margin-top: 20px;
+}
 .wrapper .activeCard {
   background: var(--background-purple);
   color: var(--white);

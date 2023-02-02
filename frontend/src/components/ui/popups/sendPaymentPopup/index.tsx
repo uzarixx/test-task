@@ -9,13 +9,17 @@ import FormInput from '../../inputs/formInput';
 import WalletsService from '../../../../services/fetchServices/wallets';
 import { fetchAuthUser } from '../../../../store/counter/userSlice';
 import PopupWrapper from '../PopupWrapper';
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
+import { paymentValidate } from '../../../../utils/validations/paymentValidate';
 
 const SendPaymentPopup: FC = () => {
-  const [selectWallet, setSelectWallet] = useState(-0);
   const wallets: any = useSelector((state: RootState) => state.walletSlice.wallets) || [];
+  const [selectWallet, setSelectWallet] = useState(wallets[0].id);
   const dispatch = useDispatch<any>();
   const requestPopup = useSelector((state: RootState) => state.popupsSlice.sendPaymentPopup);
-  const methods = useForm();
+  const methods = useForm({
+    resolver: yupResolver(paymentValidate)
+  });
   const onSubmit = async (data: any) => {
     try {
       await WalletsService.updateBalanceWallet(selectWallet, data.amount);
@@ -42,6 +46,7 @@ const SendPaymentPopup: FC = () => {
     <PopupWrapper closePopup={closePopup} popup={requestPopup}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}
+              onMouseDown={(e) => e.stopPropagation()}
               onClick={(e) => e.stopPropagation()} className={styles.wrapper}>
           <h2>Send a payment</h2>
           <span>To Wallet</span>
@@ -52,7 +57,7 @@ const SendPaymentPopup: FC = () => {
                 <p>{el.walletName}</p></div>,
             )}
           </div>
-          <FormInput placeholder={'Amount'} name={'amount'} />
+          <FormInput placeholder={'Amount'} name={'amount'} error={methods.formState.errors}/>
           <button>Send pay</button>
         </form>
       </FormProvider>

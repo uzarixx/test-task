@@ -6,4 +6,15 @@
   width: 100%;
 }
 
+.inputWrapper {
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  font-size: 10px;
+  bottom: -15px;
+  color: var(--font-red);
+}
+
 /*# sourceMappingURL=FormInput.module.css.map */

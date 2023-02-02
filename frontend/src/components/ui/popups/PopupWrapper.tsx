@@ -9,7 +9,7 @@ interface props {
 
 const PopupWrapper: FC<props> = ({ children, popup, closePopup }) => {
   return (
-    <div className={`${styles.popupWrapper} ${popup && styles.active}`} onClick={closePopup}>
+    <div className={`${styles.popupWrapper} ${popup && styles.active}`} onMouseDown={closePopup}>
       <div className={styles.popupForm}>
       {children}
       </div>
