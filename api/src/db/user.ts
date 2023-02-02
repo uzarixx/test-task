@@ -21,3 +21,4 @@ export const getUserById = async (id: number): Promise<any> => {
 export const updateUserBalance = async (id: number, balance: number): Promise<any> => {
   return await User.update({balance}, {where: {id}})
 }
+

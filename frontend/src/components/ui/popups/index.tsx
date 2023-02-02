@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
+import styles from './PopupWrapper.module.scss';
 import CreateWalletPopup from './createWalletPopup';
 import AddNewCardPopup from './addNewCardPopup';
 import AuthorizePopup from './authorizePopup';
-import RequestPaymentPopup from './sendPaymentPopup';
+import SendPaymentPopup from './sendPaymentPopup';
+import RequestPaymentPopup from './requestPaymentPopup';
 
 const Popups: FC = () => {
   return (
@@ -11,7 +13,8 @@ const Popups: FC = () => {
         <>
           <CreateWalletPopup />
           <AddNewCardPopup />
-          <RequestPaymentPopup/>
+          <SendPaymentPopup />
+          <RequestPaymentPopup />
         </>
       }
       <AuthorizePopup />

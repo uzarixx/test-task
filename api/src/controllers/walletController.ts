@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { createWallet, getAllWallets, getCountWallets, getWallet, updateWalletBalance } from '../db/wallet';
 import { createTransaction } from '../db/transaction';
+import { updateUserBalance } from '../db/user';
 
 
 const WalletController = {
@@ -14,14 +15,21 @@ const WalletController = {
   },
   updateBalanceWallet: async (req: Request | any, res: Response) => {
     const { walletId, amount } = req.body;
-    console.log(walletId, amount);
     const { id, balance } = req.user;
     if (amount > balance) return res.status(500).json('Not enough money in the account');
     const wallet = await getWallet(id, walletId);
     if (!wallet) return res.status(500).json('Wallet is not found');
     if (wallet.balance + Number(amount) > wallet.limit) return res.status(500).json('Too much amount');
-    await updateWalletBalance({ walletId, balance: Number(amount) + wallet.balance, userId: id });
-    await createTransaction({ userId: id, amount, status: true, name: 'Send to wallet', minus: true, userBalance: amount - balance });
+    await updateWalletBalance({ walletId, balance: Number(wallet.balance) + Number(amount), userId: id });
+    await createTransaction({
+      userId: id,
+      amount,
+      status: true,
+      name: 'Send to wallet',
+      minus: true,
+      userBalance: Number(balance) - Number(amount),
+    });
+    await updateUserBalance(id, Number(balance) - Number(amount));
     res.json('success');
   },
   getWallets: async (req: Request | any, res: Response) => {

@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styles from './Chart.module.scss';
 import {
   Chart as ChartJS,
@@ -8,9 +8,9 @@ import {
   LineElement,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
-import { fetchTransactions } from '../../../store/counter/transactionSlice';
+import TransactionsService from '../../../services/fetchServices/transactions';
+import date from '../../../utils/chartDate';
+import ChartInfo from '../chartInfo';
 
 ChartJS.register(
   CategoryScale,
@@ -19,26 +19,35 @@ ChartJS.register(
   LineElement,
 );
 
+
 const Chart: FC = () => {
-  const dispatch = useDispatch<any>();
-  const transactions: any = useSelector((state: RootState) => state.transactionSlice.transactions);
+  const [balances, setBalances] = useState([]);
   useEffect(() => {
-    if (transactions.rows.length <= 0) dispatch(fetchTransactions());
-  }, [transactions]);
-  console.log(transactions);
+    const fetchBalances = async () => {
+      const { data } = await TransactionsService.getTransactionsBalances();
+      setBalances(data);
+    };
+    fetchBalances();
+  }, []);
   return (
     <>
       <Line
+        width={'700px'}
+        height={'150px'}
         data={{
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
           datasets: [
             {
               label: '',
-              data: [1000, 1500, 500, 2500, 1490, 3000, 1000, 500],
+              data: balances.map((el: { userBalance: number, createdAt: string }) => {
+                return { x: date(el.createdAt), y: el.userBalance };
+              }),
+              borderColor: '#4F46E5',
             },
           ],
         }}
       />
+      <ChartInfo balances={balances}/>
     </>
   );
 };

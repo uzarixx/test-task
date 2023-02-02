@@ -1,24 +1,20 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import styles from './AppLayout.module.scss';
 import Navigation from '../../semantic/navigation';
 import MainLayout from '../mainLayout';
 import Popups from '../../ui/popups';
 import NoAuthLayout from '../noAuthLayout';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
 
 const AppLayout: FC = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const token = localStorage.getItem('authToken');
-  useEffect(() => {
-    if (token) setIsLogin(true);
-    else setIsLogin(false);
-  }, [token]);
-
-
+  const authUser: any = useSelector((state: RootState) => state.userSlice.authUser);
+  const pendingAuthUser: any = useSelector((state: RootState) => state.userSlice.status);
   return (
     <div className={styles.appLayout}>
       <Popups />
       <Navigation />
-      {isLogin ? <MainLayout /> : <NoAuthLayout />}
+      {pendingAuthUser ? <h3>Loading...</h3> : authUser ? <MainLayout /> : <NoAuthLayout />}
     </div>
   );
 };

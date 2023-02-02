@@ -23,7 +23,7 @@ export const getAllWallets = async (userId: number): Promise<any> => {
 
 
 export const getWallet = async (userId: number, walletId: number): Promise<any> => {
-  return await Wallet.findOne({ where: { [Op.or]: [{ userId }, { id: walletId }] } });
+  return await Wallet.findOne({ where: { id: walletId } });
 };
 
 export const updateWalletBalance = async ({ walletId, balance, userId }): Promise<any> => {

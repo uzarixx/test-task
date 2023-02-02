@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from 'react';
+import React, { FC} from 'react';
 import styles from './CreateWalletPopup.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
@@ -7,6 +7,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import FormInput from '../../inputs/formInput';
 import WalletsService from '../../../../services/fetchServices/wallets';
 import { fetchWallets } from '../../../../store/counter/walletSlice';
+import PopupWrapper from '../PopupWrapper';
 
 const CreateWalletPopup: FC = () => {
   const walletPopup = useSelector((state: RootState) => state.popupsSlice.createWalletPopup);
@@ -24,7 +25,7 @@ const CreateWalletPopup: FC = () => {
   };
 
   return (
-    <div className={`${styles.popupWrapper} ${walletPopup && styles.active}`} onClick={closePopup}>
+    <PopupWrapper popup={walletPopup} closePopup={closePopup}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)} className={styles.popupForm}
               onClick={(e) => e.stopPropagation()}>
@@ -34,7 +35,7 @@ const CreateWalletPopup: FC = () => {
           <button>Create Wallet</button>
         </form>
       </FormProvider>
-    </div>
+    </PopupWrapper>
   );
 };
 

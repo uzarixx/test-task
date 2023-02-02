@@ -6,6 +6,7 @@
   --font-opacity: #CBCFD5;
   --font-neutral: #79808A;
   --font-black: #121212;
+  --font-neutral-opacity: #79808A;
   --font-dark-blue: #344055;
   --font-purple: #4F46E5;
   --font-purple-opacity: #B8B6F7;
@@ -21,6 +22,7 @@
   --subtitle-color: #5B6776;
   --header-border: #E2E8F0;
   --user-cards-border: #E2E8F0;
+  --chart-info-font: #79808A;
   --from-input-border: #E2E8F0;
   --user-card-border-right: #E3E8EF;
   --bank-card-background: #F8FAFC;

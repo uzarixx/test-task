@@ -8,7 +8,7 @@ export const fetchAuthUser = createAsyncThunk(
       const { data } = await UserService.getAuthUser();
       return data;
     } catch (e) {
-      console.log(e);
+
       localStorage.removeItem('authToken');
     }
   },

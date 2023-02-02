@@ -7,6 +7,7 @@ import { setAddCardPopup } from '../../../../store/counter/popupsSlice';
 import { RootState } from '../../../../store/store';
 import CardService from '../../../../services/fetchServices/card';
 import { fetchCards } from '../../../../store/counter/cardSlice';
+import PopupWrapper from '../PopupWrapper';
 
 const AddNewCardPopup: FC = () => {
   const cardPopup = useSelector((state: RootState) => state.popupsSlice.addCardPopup);
@@ -23,10 +24,11 @@ const AddNewCardPopup: FC = () => {
     closePopup();
   };
   return (
-    <div className={`${styles.popupWrapper} ${cardPopup && styles.active}`} onClick={closePopup}>
+    <PopupWrapper popup={cardPopup} closePopup={closePopup}>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)} className={styles.popupForm}
+        <form onSubmit={methods.handleSubmit(onSubmit)}
               onClick={(e) => e.stopPropagation()}>
+          <div className={styles.gapWrapper}>
           <h4>Add New Card</h4>
           <FormInput placeholder={'Card Number'} name={'cardNumber'} />
           <div className={styles.detailCardInfo}>
@@ -35,9 +37,10 @@ const AddNewCardPopup: FC = () => {
             <FormInput placeholder={'CVV'} name={'cvvCard'} />
           </div>
           <button>Add Card</button>
+          </div>
         </form>
       </FormProvider>
-    </div>
+    </PopupWrapper>
   );
 };
 

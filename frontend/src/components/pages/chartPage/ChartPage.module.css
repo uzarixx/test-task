@@ -7,6 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 24px;
 }
 .cardPin .left {
   display: flex;
@@ -23,10 +24,22 @@
 }
 .cardPin .right button {
   border: 1px solid var(--from-input-border);
+  color: var(--font-neutral-opacity);
+  font-weight: 600;
+  line-height: 20px;
+  font-size: 14px;
   padding: 8px 16px;
   background: var(--white);
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
   border-radius: 1000px;
+}
+
+.chartTitle {
+  margin-bottom: 25px;
+  line-height: 30px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--font-black);
 }
 
 /*# sourceMappingURL=ChartPage.module.css.map */

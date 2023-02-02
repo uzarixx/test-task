@@ -7,11 +7,12 @@ import { setAuthorizePopup } from '../../../../store/counter/popupsSlice';
 import LoginForm from './forms/LoginForm';
 import Register from './forms/RegisterForm';
 import UserService from '../../../../services/fetchServices/user';
+import { fetchAuthUser } from '../../../../store/counter/userSlice';
 
 const AuthorizePopup: FC = () => {
   const [typeAuth, setTypeAuth] = useState(true);
   const authorizePopup = useSelector((state: RootState) => state.popupsSlice.authorizePopup);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const methods = useForm();
   const onSubmit = async (data: any) => {
     try {
@@ -19,7 +20,8 @@ const AuthorizePopup: FC = () => {
       if (typeAuth) response = await UserService.login(data.password, data.email);
       else response = await UserService.register(data.password, data.email, data.userName, data.userLastName);
       localStorage.setItem('authToken', response.data.token);
-      closePopup()
+      await dispatch(fetchAuthUser());
+      closePopup();
     } catch (e) {
       console.log(e);
     }

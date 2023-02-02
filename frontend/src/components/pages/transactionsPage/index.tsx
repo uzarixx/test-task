@@ -6,7 +6,7 @@ import Pagination from '../../ui/pagination';
 import { debounce } from 'src/utils/debounce';
 import { useDispatch } from 'react-redux';
 import { fetchTransactions } from '../../../store/counter/transactionSlice';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const TransactionsPage: FC = () => {

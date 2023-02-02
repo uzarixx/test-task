@@ -16,7 +16,7 @@ const TransactionController = {
     const { id, balance } = req.user;
     const cards = await getAllCards({ userId: id });
     if (!cards) return res.status(500).json('You do not have a bank card');
-    const newBalance = balance + Number(amount);
+    const newBalance = Number(balance) + Number(amount);
     await createTransaction({
       userId: id,
       amount,

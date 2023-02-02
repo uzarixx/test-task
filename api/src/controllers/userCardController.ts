@@ -13,7 +13,7 @@ const UserCardController = {
   getCards: async (req: Request | any, res: Response) => {
     const { id } = req.user;
     const cards = await getAllCards({ userId: id });
-    res.json(cards)
+    res.json(cards);
   },
 };
 

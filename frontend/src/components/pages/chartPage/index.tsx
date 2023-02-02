@@ -4,6 +4,7 @@ import styles from './ChartPage.module.scss';
 import PagesHead from '../../semantic/pagesHead';
 import InfoIco from '../../ui/icons/InfoIco';
 import Chart from '../../ui/chart';
+import ChartInfo from '../../ui/chartInfo';
 
 const ChartPage: FC = () => {
   const [pin, setPin] = useState(localStorage.getItem('pin') === '1');
@@ -11,8 +12,6 @@ const ChartPage: FC = () => {
     localStorage.setItem('pin', '1');
     setPin(true);
   };
-
-
   return (
     <Main>
       <PagesHead title={'Finance Chart'} subtitle={'Keep track your financial plan'} />
@@ -25,6 +24,7 @@ const ChartPage: FC = () => {
           <button>Got it</button>
         </div>
       </div>}
+      <h3 className={styles.chartTitle}>Statistic</h3>
       <Chart />
     </Main>
   );

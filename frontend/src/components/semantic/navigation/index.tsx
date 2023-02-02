@@ -9,7 +9,7 @@ import UserIco from '../../ui/icons/UserIco';
 
 
 const Navigation: FC = () => {
-  const { userName, userLastName }: any = useSelector((state: RootState) => state.userSlice.authUser);
+  const user: any = useSelector((state: RootState) => state.userSlice.authUser);
   return (
     <nav className={styles.navigationWrapper}>
       <div className={styles.navTop}>
@@ -30,7 +30,7 @@ const Navigation: FC = () => {
       {localStorage.getItem('authToken') &&
         <div className={styles.navBottom}>
           <div className={styles.settings}><SettingsIco /> Settings</div>
-          <div className={styles.user}><UserIco /> <p>{userName} {userLastName}</p></div>
+          <div className={styles.user}><UserIco /> <p>{user?.userName} {user?.userLastName}</p></div>
         </div>}
     </nav>
   );

@@ -13,4 +13,14 @@ export default class TransactionsService {
       },
     });
   }
+
+  static async getTransactionsBalances() {
+    return $api.get('/get-balances');
+  }
+
+  static async requestPayment(amount: number) {
+    return $api.post('/create-request-payment', {
+      amount,
+    });
+  }
 }
