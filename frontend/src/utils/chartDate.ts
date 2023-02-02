@@ -1,4 +1,4 @@
-const currentDate = (timeStamp: number | string) => {
+const currentDate = (timeStamp: number | string, monthSelect: boolean) => {
   if (!timeStamp) {
     return false;
   }
@@ -6,9 +6,9 @@ const currentDate = (timeStamp: number | string) => {
   const date = new Date(timeStamp);
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const month = months[date.getMonth()];
+  const day = date.getDate();
 
-
-  return `${month}`;
+  return `${monthSelect ? day : month}`;
 };
 
 export default currentDate;

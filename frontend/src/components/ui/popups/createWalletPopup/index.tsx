@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './CreateWalletPopup.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
@@ -12,20 +12,26 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { createWalletValidate } from '../../../../utils/validations/createWalletValidate';
 
 const CreateWalletPopup: FC = () => {
+  const [error, setError] = useState('');
   const walletPopup = useSelector((state: RootState) => state.popupsSlice.createWalletPopup);
   const dispatch = useDispatch<any>();
   const closePopup = () => {
     dispatch(setWalletPopup(false));
     methods.reset();
+    setError('')
   };
   const methods = useForm(
     { resolver: yupResolver(createWalletValidate) },
   );
 
   const onSubmit = async (data: any) => {
-    await WalletsService.createWallet(data.limit, data.walletName);
-    dispatch(fetchWallets());
-    closePopup();
+    try {
+      await WalletsService.createWallet(data.limit, data.walletName);
+      dispatch(fetchWallets());
+      closePopup();
+    } catch (e: any) {
+      e.response.data && setError(e.response.data);
+    }
   };
 
   return (
@@ -37,6 +43,7 @@ const CreateWalletPopup: FC = () => {
           <h4>Create New Wallet</h4>
           <FormInput placeholder={'Wallet Name'} name={'walletName'} error={methods.formState.errors} />
           <FormInput placeholder={'Wallet Limit'} name={'limit'} error={methods.formState.errors} />
+          {error && <p>{error}</p>}
           <button>Create Wallet</button>
         </form>
       </FormProvider>

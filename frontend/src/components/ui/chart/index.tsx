@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from 'react';
-import styles from './Chart.module.scss';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -19,8 +18,18 @@ ChartJS.register(
   LineElement,
 );
 
+interface props {
+  chartType: boolean;
+}
 
-const Chart: FC = () => {
+const dateNow = new Date();
+const nameOfMonth = dateNow.toLocaleString(
+  'eng',
+  { month: 'long' },
+);
+const monthNow = nameOfMonth.toString().slice(0, 3);
+
+const Chart: FC<props> = ({ chartType }) => {
   const [balances, setBalances] = useState([]);
   useEffect(() => {
     const fetchBalances = async () => {
@@ -29,26 +38,32 @@ const Chart: FC = () => {
     };
     fetchBalances();
   }, []);
+
   return (
     <>
       <Line
         width={'700px'}
         height={'150px'}
         data={{
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          labels: chartType ?
+            ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+            : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
           datasets: [
             {
               label: '',
               pointRadius: 0,
               data: balances.map((el: { userBalance: number, createdAt: string }) => {
-                return { x: date(el.createdAt), y: el.userBalance };
+                return {
+                  x: date(el.createdAt, false) === monthNow ? date(el.createdAt, chartType) : null,
+                  y: el.userBalance,
+                };
               }),
               borderColor: '#4F46E5',
             },
           ],
         }}
       />
-      <ChartInfo balances={balances}/>
+      <ChartInfo balances={balances} />
     </>
   );
 };

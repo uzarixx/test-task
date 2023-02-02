@@ -13,6 +13,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { paymentValidate } from '../../../../utils/validations/paymentValidate';
 
 const SendPaymentPopup: FC = () => {
+  const [error, setError] = useState('');
   const wallets: any = useSelector((state: RootState) => state.walletSlice.wallets) || [];
   const [selectWallet, setSelectWallet] = useState(wallets[0]?.id);
   const dispatch = useDispatch<any>();
@@ -27,12 +28,13 @@ const SendPaymentPopup: FC = () => {
       await dispatch(fetchAuthUser());
       methods.reset();
       closePopup();
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
+      setError(e.response.data);
     }
   };
   const closePopup = () => {
     dispatch(setSendPaymentPopup(false));
+    setError('')
   };
   useEffect(() => {
     if (wallets.length <= 0) dispatch(fetchWallets());
@@ -58,6 +60,7 @@ const SendPaymentPopup: FC = () => {
             )}
           </div>
           <FormInput placeholder={'Amount'} name={'amount'} error={methods.formState.errors} />
+          {error && <p>{error}</p>}
           <button>Send pay</button>
         </form>
       </FormProvider>

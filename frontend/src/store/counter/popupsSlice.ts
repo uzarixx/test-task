@@ -7,6 +7,7 @@ export interface CounterState {
   authorizePopup: boolean;
   sendPaymentPopup: boolean;
   requestPaymentPopup: boolean;
+  navigationPopup: boolean;
 }
 
 const initialState: CounterState = {
@@ -15,6 +16,7 @@ const initialState: CounterState = {
   authorizePopup: false,
   sendPaymentPopup: false,
   requestPaymentPopup: false,
+  navigationPopup: false,
 };
 
 const popupsSlice = createSlice({
@@ -36,9 +38,19 @@ const popupsSlice = createSlice({
     setRequestPaymentPopup: (state, action) => {
       state.requestPaymentPopup = action.payload;
     },
+    setNavigationPopup: (state, action) => {
+      state.navigationPopup = action.payload;
+    },
   },
 });
 
 
 export default popupsSlice.reducer;
-export const { setWalletPopup, setAddCardPopup, setAuthorizePopup, setSendPaymentPopup, setRequestPaymentPopup} = popupsSlice.actions;
+export const {
+  setWalletPopup,
+  setAddCardPopup,
+  setAuthorizePopup,
+  setSendPaymentPopup,
+  setRequestPaymentPopup,
+  setNavigationPopup
+} = popupsSlice.actions;
