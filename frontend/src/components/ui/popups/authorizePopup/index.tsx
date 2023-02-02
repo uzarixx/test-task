@@ -35,7 +35,8 @@ const AuthorizePopup: FC = () => {
   };
   const closePopup = () => {
     dispatch(setAuthorizePopup(false));
-    setError('')
+    setError('');
+    methods.reset();
   };
 
   const changeType = () => {
