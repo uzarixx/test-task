@@ -39,6 +39,7 @@ const Chart: FC = () => {
           datasets: [
             {
               label: '',
+              pointRadius: 0,
               data: balances.map((el: { userBalance: number, createdAt: string }) => {
                 return { x: date(el.createdAt), y: el.userBalance };
               }),

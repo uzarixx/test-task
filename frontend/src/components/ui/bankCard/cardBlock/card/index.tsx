@@ -43,7 +43,7 @@ const Card: FC<props> = ({ userName, userLastName, selectCard }) => {
           <CardLogoIco />
         </div>
       </div>
-      {cards.rows && cards.rows[selectCard] !== undefined ?
+      {cards?.rows && cards?.rows[selectCard] !== undefined ?
         <div className={styles.cardInfo}>
           <h4>Card Information</h4>
           <div className={styles.cardData}><p>Card No.</p>

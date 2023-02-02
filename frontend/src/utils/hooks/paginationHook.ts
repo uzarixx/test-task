@@ -48,5 +48,6 @@ export const usePaginationHook = (count: string) => {
     limit,
     onChangeLimit,
     page,
+    pages,
   };
 };

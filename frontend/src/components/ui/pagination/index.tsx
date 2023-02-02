@@ -16,7 +16,8 @@ const Pagination: FC = () => {
     onClickPlusTwo,
     limit,
     onChangeLimit,
-    page
+    page,
+    pages,
   } = usePaginationHook(count);
   return (
     <div className={styles.paginationWrapper}>
@@ -28,12 +29,12 @@ const Pagination: FC = () => {
       <p>{page} - {limit} of {count}</p>
       <div className={styles.buttons}>
         <div className={styles.left}>
-          <ArrowMiniDoubleIco onClick={onClickMinusTwo} />
-          <ArrowMiniIco onClick={onClickMinusOne} />
+          <ArrowMiniDoubleIco onClick={onClickMinusTwo} active={page <= 2} />
+          <ArrowMiniIco onClick={onClickMinusOne} active={page === 1} />
         </div>
         <div className={styles.right}>
-          <ArrowMiniDoubleIco onClick={onClickPlusTwo} />
-          <ArrowMiniIco onClick={onClickPlusOne} />
+          <ArrowMiniDoubleIco onClick={onClickPlusTwo} active={page >= (pages - 1)} />
+          <ArrowMiniIco onClick={onClickPlusOne} active={page === pages} />
         </div>
       </div>
     </div>

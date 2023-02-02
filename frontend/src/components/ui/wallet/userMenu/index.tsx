@@ -17,7 +17,6 @@ const UserMenu: FC = () => {
   const onClickRequestPayment = () => {
     dispatch(setRequestPaymentPopup(true));
   };
-  console.log(NumberFormat(user.balance));
   return (
     <div className={styles.userMenuWrapper}>
       <div className={styles.mainUserBlock}>

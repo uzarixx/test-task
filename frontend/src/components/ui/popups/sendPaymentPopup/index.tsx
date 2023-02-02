@@ -14,11 +14,11 @@ import { paymentValidate } from '../../../../utils/validations/paymentValidate';
 
 const SendPaymentPopup: FC = () => {
   const wallets: any = useSelector((state: RootState) => state.walletSlice.wallets) || [];
-  const [selectWallet, setSelectWallet] = useState(wallets[0].id);
+  const [selectWallet, setSelectWallet] = useState(wallets[0]?.id);
   const dispatch = useDispatch<any>();
   const requestPopup = useSelector((state: RootState) => state.popupsSlice.sendPaymentPopup);
   const methods = useForm({
-    resolver: yupResolver(paymentValidate)
+    resolver: yupResolver(paymentValidate),
   });
   const onSubmit = async (data: any) => {
     try {
@@ -57,7 +57,7 @@ const SendPaymentPopup: FC = () => {
                 <p>{el.walletName}</p></div>,
             )}
           </div>
-          <FormInput placeholder={'Amount'} name={'amount'} error={methods.formState.errors}/>
+          <FormInput placeholder={'Amount'} name={'amount'} error={methods.formState.errors} />
           <button>Send pay</button>
         </form>
       </FormProvider>
