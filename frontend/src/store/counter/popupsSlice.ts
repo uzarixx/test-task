@@ -16,7 +16,7 @@ const initialState: CounterState = {
   authorizePopup: false,
   sendPaymentPopup: false,
   requestPaymentPopup: false,
-  navigationPopup: false,
+  navigationPopup: true,
 };
 
 const popupsSlice = createSlice({
@@ -52,5 +52,5 @@ export const {
   setAuthorizePopup,
   setSendPaymentPopup,
   setRequestPaymentPopup,
-  setNavigationPopup
+  setNavigationPopup,
 } = popupsSlice.actions;
