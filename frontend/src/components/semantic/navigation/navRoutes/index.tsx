@@ -18,7 +18,7 @@ const NavRoutes: FC = () => {
       {routesArray.map((el: { title: string, pathname: string; }, i) =>
         <div className={styles.wrapper} key={i} >
         <RoutesLink title={el.title} pathname={el.pathname}  />
-          {i === 3 && <span className={styles.notifications}>{`${countNotifications}`}</span>}
+          {i === 3 && countNotifications >= 1 && <span className={styles.notifications}>{`${countNotifications}`}</span>}
         </div>
       )}
     </>

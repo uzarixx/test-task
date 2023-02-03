@@ -1,16 +1,18 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import styles from './TransactionsPage.module.scss';
 import Table from '../../ui/table';
 import SearchIco from '../../ui/icons/SearchIco';
 import Pagination from '../../ui/pagination';
 import { debounce } from 'src/utils/debounce';
 import { useDispatch } from 'react-redux';
-import { fetchTransactions } from '../../../store/counter/transactionSlice';
+import { fetchNotificationTransaction, fetchTransactions } from '../../../store/counter/transactionSlice';
 import { useNavigate } from 'react-router-dom';
+import { RootState, useAppSelector } from '../../../store/store';
 
 
 const TransactionsPage: FC = () => {
   const dispatch = useDispatch<any>();
+  const notifications = useAppSelector((state: RootState) => state.transactionSlice.notifications);
   const navigate = useNavigate();
   const fetch = async (name: string) => {
     dispatch(fetchTransactions({ page: '1', limit: '10', name }));
@@ -28,6 +30,10 @@ const TransactionsPage: FC = () => {
       linkRef.current.click();
     }
   };
+
+  useEffect(() => {
+    notifications >= 1 && dispatch(fetchNotificationTransaction());
+  }, []);
   return (
     <main className={styles.main}>
       <div className={styles.headAndSearch}>
