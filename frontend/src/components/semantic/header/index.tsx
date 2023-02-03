@@ -5,6 +5,7 @@ import ExpandIco from '../../ui/icons/ExpandIco';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMainActive } from 'src/store/counter/popupsSlice';
 import { RootState } from '../../../store/store';
+import InboxIco from '../../ui/icons/InboxIco';
 
 const Header: FC = () => {
   const isOpen = useSelector((state: RootState) => state.popupsSlice.mainActive);
@@ -16,6 +17,7 @@ const Header: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.headerLeft}>
+        <InboxIco/>
         <ExpandIco onClick={onClickFullWidth} />
       </div>
       <div className={styles.headerRight}>
