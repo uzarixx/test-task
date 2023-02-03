@@ -28,7 +28,7 @@ const RequestPaymentPopup: FC = () => {
     dispatch(setRequestPaymentPopup(false));
   };
   useEffect(() => {
-    if (cards.rows.length <= 0) dispatch(fetchCards());
+    if (cards.rows && cards.rows.length <= 0) dispatch(fetchCards());
   }, [requestPopup]);
   const onSubmit = async (data: any) => {
     try {
