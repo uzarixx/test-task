@@ -11,6 +11,7 @@ import { fetchAuthUser } from '../../../../store/counter/userSlice';
 import PopupWrapper from '../PopupWrapper';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { paymentValidate } from '../../../../utils/validations/paymentValidate';
+import { fetchNotificationTransaction } from '../../../../store/counter/transactionSlice';
 
 const SendPaymentPopup: FC = () => {
   const [error, setError] = useState('');
@@ -26,6 +27,7 @@ const SendPaymentPopup: FC = () => {
       await WalletsService.updateBalanceWallet(selectWallet, data.amount);
       await dispatch(fetchWallets());
       await dispatch(fetchAuthUser());
+      await dispatch(fetchNotificationTransaction());
       methods.reset();
       closePopup();
     } catch (e: any) {
@@ -34,7 +36,7 @@ const SendPaymentPopup: FC = () => {
   };
   const closePopup = () => {
     dispatch(setSendPaymentPopup(false));
-    setError('')
+    setError('');
   };
   useEffect(() => {
     if (wallets.length <= 0) dispatch(fetchWallets());

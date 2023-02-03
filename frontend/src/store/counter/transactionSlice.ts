@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import TransactionsService from '../../services/fetchServices/transactions';
+import NotificationsService from '../../services/fetchServices/notifications';
 
 export const fetchTransactions = createAsyncThunk(
   'counter/transactions',
@@ -13,13 +14,27 @@ export const fetchTransactions = createAsyncThunk(
   },
 );
 
+
+export const fetchNotificationTransaction = createAsyncThunk(
+  'counter/notifications',
+  async function() {
+    try {
+      const { data } = await NotificationsService.getCountNotifications();
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  },
+);
 export interface CounterState {
+  notifications: number,
   transactions: {count: number, rows: []};
   transactionsStatus: boolean;
 }
 
 const initialState: CounterState = {
   transactions: {count: 0, rows: []},
+  notifications: 0,
   transactionsStatus: true,
 };
 
@@ -38,6 +53,9 @@ const transactionsSlice = createSlice({
     builder.addCase(fetchTransactions.fulfilled, (state: any, action: any) => {
       state.transactionsStatus = false;
       state.transactions = action.payload;
+    });
+    builder.addCase(fetchNotificationTransaction.fulfilled, (state: any, action: any) => {
+      state.notifications = action.payload;
     });
   },
 });

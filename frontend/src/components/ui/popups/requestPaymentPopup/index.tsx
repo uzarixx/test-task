@@ -13,6 +13,7 @@ import { fetchAuthUser } from '../../../../store/counter/userSlice';
 import { Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { paymentValidate } from '../../../../utils/validations/paymentValidate';
+import { fetchNotificationTransaction } from '../../../../store/counter/transactionSlice';
 
 
 const RequestPaymentPopup: FC = () => {
@@ -33,6 +34,7 @@ const RequestPaymentPopup: FC = () => {
     try {
       await TransactionsService.requestPayment(data.amount);
       await dispatch(fetchAuthUser());
+      await dispatch(fetchNotificationTransaction());
       methods.reset();
       closePopup();
     } catch (e) {
